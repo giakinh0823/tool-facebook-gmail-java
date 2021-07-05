@@ -60,8 +60,8 @@ public class Utility {
     public void goToFacebook() {
         System.setProperty("webdriver.chrome.driver", pathChrome);
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("headless");
-        options.addArguments("--disable-gpu");
+//        options.addArguments("headless");
+//        options.addArguments("--disable-gpu");
         options.addArguments("--start-maximized");
         driver = new ChromeDriver(options);
         actions = new Actions(driver);
@@ -260,7 +260,13 @@ public class Utility {
             if (isadminPage) {
                 elementButtonInvite = driver.findElement(By.xpath("//div[2]/div/div/div/div/div/div/div/div/div/div[3]/div[5]"));
             } else {
-                elementButtonInvite = driver.findElement(By.cssSelector(".oajrlxb2:nth-child(5) .qzhwtbm6 > .d2edcug0"));
+//                elementButtonInvite = driver.findElement(By.cssSelector(".oajrlxb2:nth-child(5) .qzhwtbm6 > .d2edcug0"));
+                try {
+                    elementButtonInvite = driver.findElement(By.xpath("//div/div/div/div/span[contains(.,'Mời bạn bè')]"));  
+                } catch (Exception e) {
+                     elementButtonInvite = driver.findElement(By.xpath("//div/i[@style='background-image: url('https://static.xx.fbcdn.net/rsrc.php/v3/yC/r/5-o55vsmBb5.png'); background-position: 0px 0px; background-size: 21px 105px; width: 20px; height: 20px; background-repeat: no-repeat; display: inline-block;']")); 
+                }
+ 
             }
             Action clickButtonInvite = actions.moveToElement(elementButtonInvite)
                     .click()
