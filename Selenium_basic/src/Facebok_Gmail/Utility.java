@@ -104,16 +104,13 @@ public class Utility {
             clickButtonLogin.perform();
             thread.sleep(6000);
             driver.get("https://www.facebook.com/me/");
-            thread.sleep(2000);
-            WebElement body = driver.findElement(By.tagName("body"));
-            Action clickBody = actions.moveToElement(body)
-                    .click()
-                    .build();
-            clickBody.perform();
             thread.sleep(3000);
-            WebElement elementNameProfile = driver.findElement(By.xpath("//div[2]/div/div/div/div/div/div/span/h1"));
-            System.out.println("Success!");
-            System.out.println("Hello " + elementNameProfile.getText());
+            try {
+                WebElement elementNameProfile = driver.findElement(By.xpath("//div[2]/div/div/div/div/div/div/span/h1"));
+                System.out.println("Success!");
+                System.out.println("Hello " + elementNameProfile.getText());
+            } catch (Exception e) {
+            }
             islogin = true;
         } catch (InterruptedException ex) {
             Logger.getLogger(Utility.class.getName()).log(Level.SEVERE, null, ex);
@@ -376,7 +373,7 @@ public class Utility {
                     .build();
             clickElementNext.perform();
             thread.sleep(4000);
-            System.out.println("Done"); 
+            System.out.println("Done");
             closeDriver();
         } catch (InterruptedException ex) {
             Logger.getLogger(Utility.class.getName()).log(Level.SEVERE, null, ex);
