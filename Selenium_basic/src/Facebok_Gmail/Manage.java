@@ -5,6 +5,8 @@
  */
 package Facebok_Gmail;
 
+import java.util.List;
+
 /**
  *
  * @author giaki
@@ -29,7 +31,7 @@ public class Manage {
         System.out.println("Step 4. Choose options 2");
         System.out.println("Step 5. Paste the link you copied to path chromedriver");
         System.out.println("Step 6. Create file txt and copy path");
-        System.out.println("example: D:\\FPT UNIVERSITY\\STUDY\\KY 2\\PRO\\BIN\\Selenium\\Selenium_basic\\src\\Run_Selenium\\testList.txt");
+        System.out.println("example: D:\\FPT UNIVERSITY\\STUDY\\KY 2\\PRO\\BIN\\Selenium\\Selenium_basic\\src\\Facebok_Gmail\\testList.txt");
         System.out.println("step 7. Paste the link you copied to file");
         System.out.println("------------------------------------");
     }
@@ -92,27 +94,31 @@ public class Manage {
     }
 
     public void sendMessageForAllFriends() {
-        enterFileName();
-        if (pathChrome == null || fileName == null) {
+        if (pathChrome == null) {
             System.out.println("Please enter Path chrome driver and filename");
             return;
+        }
+        if (fileName == null) {
+            enterFileName();
         }
         if (username == null || password == null) {
             System.out.println("Please enter username and password!!");
             return;
         }
-        String message[] = {"Chào bạn",
-            "Bạn like fanpage này giúp mình với ạ!",
-            "https://www.facebook.com/105262485118977",
-            "Mình cảm ơn!"};
+//        String message[] = {"Chào bạn",
+//            "Bạn like fanpage này giúp mình với ạ!",
+//            "https://www.facebook.com/105262485118977",
+//            "Mình cảm ơn!"};
+        FileManage fileManage = new FileManage();
+        List<String> list = fileManage.readFileMessage("D:\\FPT UNIVERSITY\\STUDY\\KY 2\\PRO\\BIN\\Selenium\\Selenium_basic\\src\\Facebok_Gmail\\message.txt");
         utility.sendMessageForAllFriend(
                 username,
                 password,
-                message);
+                list);
     }
 
     public void InvitefriendsLikePage() {
-        if (pathChrome == null || fileName == null) {
+        if (pathChrome == null) {
             System.out.println("Please enter Path chrome driver and filename");
             return;
         }

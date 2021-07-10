@@ -194,7 +194,7 @@ public class Utility {
         System.out.println("Total: " + datas.size() + " friends");
     }
 
-    public void sendMessageForAllFriend(String username, String password, String[] message) {
+    public void sendMessageForAllFriend(String username, String password, List<String> message) {
         try {
             Hashtable<String, String> datas = file.readFileHashtable();
             Enumeration<String> enumeration = datas.keys();
@@ -210,11 +210,11 @@ public class Utility {
                     System.out.println("Sending for " + name);
                     driver.get(datas.get(name).replace("https://www.facebook.com/profile.php?id=", "https://www.facebook.com/").replace("https://www.facebook.com/", "https://www.facebook.com/messages/t/"));
                     thread.sleep(3000);
-                    for (int i = 0; i < message.length; i++) {
+                    for (int i = 0; i < message.size(); i++) {
                         WebElement elementInput = driver.findElement(By.xpath("//div[3]/div[2]/div/div/div/div/div/div[2]/div/div/div/div"));
                         Action senkeyMessage = actions.moveToElement(elementInput)
                                 .click()
-                                .sendKeys(message[i])
+                                .sendKeys(message.get(i))
                                 .sendKeys(Keys.ENTER)
                                 .build();
                         senkeyMessage.perform();
