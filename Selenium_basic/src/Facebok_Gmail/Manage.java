@@ -110,7 +110,8 @@ public class Manage {
 //            "https://www.facebook.com/105262485118977",
 //            "Mình cảm ơn!"};
         FileManage fileManage = new FileManage();
-        List<String> list = fileManage.readFileMessage("D:\\FPT UNIVERSITY\\STUDY\\KY 2\\PRO\\BIN\\Selenium\\Selenium_basic\\src\\Facebok_Gmail\\message.txt");
+        String filename= input.inputString("Enter path message.txt: ");
+        List<String> list = fileManage.readFileMessage(filename);
         utility.sendMessageForAllFriend(
                 username,
                 password,
